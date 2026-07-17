@@ -11,5 +11,5 @@ from collections import Counter
 import heapq
 def Top_k(arr, k):
     counts = Counter(arr)
-    return heapq.nlargest(k, counts.keys(), keys=counts.get()
+    return heapq.nlargest(k, counts.keys(), keys=counts.get)
     
