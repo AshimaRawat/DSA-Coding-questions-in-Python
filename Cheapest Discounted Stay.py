@@ -12,7 +12,7 @@ def cheapest_stay(prices, k):
     window = deque()
     window_sum = 0
     min_sum = 0
-    for i in range(len(prices)):
+    for i in range(k):
         window.append(prices[i])
         window_sum = window_sum + prices[i]
     min_sum = window_sum
