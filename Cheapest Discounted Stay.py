@@ -12,13 +12,25 @@ def cheapest_stay(prices, k):
     window = deque()
     window_sum = 0
     min_sum = 0
-    for i in range(k):
+    min_start = 0
+    min_end = 0
+    
+    for i in range(k):        # build the first window
         window.append(prices[i])
         window_sum = window_sum + prices[i]
     min_sum = window_sum
+    min_start = 0             # first window starts at index 0
+
+    # slide: add new day at the back, remove oldest day from the front
+    start = 1            # start index of the *next* window we'll form
     for i in range(k, len(prices)):
         window.append(prices[i])
         removed = window.popleft()
         window_sum = window_sum - removed
-        min_sum = min(window_sum, min_sum)
-    return min_sum
+        if min_sum > window_sum:
+            min_sum = window_sum
+            min_start = start
+        start = start + 1
+    min_end = min_start + k -1
+        
+    return (min_sum, min_start, min_end)
